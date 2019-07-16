@@ -1,35 +1,25 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-function TeamList() {
-  const [teamMember] = useState([
-    {
-      name: 'Get Rich',
-      email: 'gr@gmail.com',
-      role: 'Artist',
-    },
-    {
-      name: 'Heat',
-      email: 'heat@gmail.com',
-      role: 'Rapper',
-    },
-    {
-      name: 'What Up Gangsta',
-      email: 'goat@gmail.com',
-      role: 'Goat',
-    }
-  ])
-
+const TeamList = props => {
 
   return (
-    <div className='ui card'>
-      <div className='content'>
+    <>
+    <div className='ui card' style={{margin:'50px auto'}} onClick={() => console.log(props.member)}>
+      <h1>
+        {props.member.name}
+      </h1>
+        <div className='description'>
+        <div>
+        {props.member.role}
 
-      {teamMember.map(member => (
-        <div className='header'>{member.name}</div>
-        )
-        )}
         </div>
+        {props.member.email}
+        </div>
+        <button onClick={() => {
+          props.editMember(props.member)
+        }}></button>
     </div>
+    </>
   )
 }
 
