@@ -34,10 +34,11 @@ function App() {
         teamMember={teamMember}
         setTeamMember={setTeamMember}
         addMember={addMember}
+        currentMember={currentMember}
       />
 
-      {currentMember.map(member => {
-        return <TeamList member={member} currentMember={currentMember} addMember={addMember} editMember={editMember}/>
+      {currentMember.map((member, i) => {
+        return <TeamList key={i} member={member} currentMember={currentMember} addMember={addMember} editMember={editMember}/>
       })}
     </div>
   );

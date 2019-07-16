@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState} from 'react'
 
 const Form = props => {
-  // console.log(props)
+  
   const [teamMember, setTeamMember] = useState({
     name: '',
     email: '',
@@ -13,7 +13,7 @@ const Form = props => {
   const handleChange = e => {
   setTeamMember({
     ...teamMember,
-    [e.target.name]:e.target.value
+    [e.target.name]: e.target.value
   })
 }
   
@@ -30,32 +30,33 @@ const Form = props => {
     })
   }
 
-  useEffect( () => {
-    setTeamMember(props.memberToEdit)
-  }, [props.memberToEdit])
+  // useEffect( () => {
+  //   setTeamMember(props.memberToEdit)
+  // }, [props.memberToEdit])
 
   return (
     <div className='ui middle aligned center aligned grid'>
       <div className='column twelve wide'>
       <h3>Team Member</h3>
+      {console.log(props.teamMember.name)}
       <form onSubmit={handleSubmit}>
         <label>
-          Name: 
-          <input name='name' type='text' placeholder='Joe Bob' onChange={handleChange}/>
-        </label>
+          Name:  </label>
+          <input name='name' type='text' value={teamMember.name} placeholder='Joe Bob' onChange={handleChange}/>
+       
 
         <label>
           E-mail: 
-          <input name='email' type='email' placeholder='joe@bob.com' onChange={handleChange}/>
+          <input name='email' type='email' value={teamMember.email} placeholder='joe@bob.com' onChange={handleChange}/>
         </label>
 
         <label>
           Role: 
-          <input name='role' type='text' placeholder='backend engineer, frontend engineer, designer' onChange={handleChange}/>
+          <input name='role' type='text' value={teamMember.role} placeholder='backend engineer, frontend engineer, designer' onChange={handleChange}/>
         </label>
 
         <label>
-          <button onClick={props.addMember}>Submit</button>
+          <button onClick={() =>props.addMember({...teamMember})}>Submit</button>
           <button >Edit</button>
         </label>
       </form>
